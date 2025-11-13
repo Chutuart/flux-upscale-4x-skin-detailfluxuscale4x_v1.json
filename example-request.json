@@ -1,0 +1,362 @@
+{
+  "input": {
+    "workflow": {
+      "13": {
+        "inputs": {
+          "text": "clip_l"
+        },
+        "class_type": "DualCLIPLoader",
+        "_meta": {
+          "title": "DualCLIPLoader"
+        }
+      },
+      "14": {
+        "inputs": {
+          "filename": "ae.sft"
+        },
+        "class_type": "VAELoader",
+        "_meta": {
+          "title": "VAELoader"
+        }
+      },
+      "19": {
+        "inputs": {
+          "value": 256,
+          "tiles": [
+            "94",
+            0
+          ],
+          "positions": [
+            "52",
+            1
+          ],
+          "original_size": [
+            "52",
+            2
+          ],
+          "grid_size": [
+            "52",
+            3
+          ]
+        },
+        "class_type": "TTP_Image_Assy",
+        "_meta": {
+          "title": "TTP_Image_Assy"
+        }
+      },
+      "52": {
+        "inputs": {
+          "value": 1024,
+          "image": [
+            "85",
+            0
+          ],
+          "tile_width": [
+            "82",
+            0
+          ],
+          "tile_height": [
+            "82",
+            1
+          ]
+        },
+        "class_type": "TTP_Image_Tile_Batch",
+        "_meta": {
+          "title": "TTP_Image_Tile_Batch"
+        }
+      },
+      "74": {
+        "inputs": {
+          "filename_prefix": "ComfyUI",
+          "images": [
+            "19",
+            0
+          ]
+        },
+        "class_type": "SaveImage",
+        "_meta": {
+          "title": "SaveImage"
+        }
+      },
+      "82": {
+        "inputs": {
+          "value": 3,
+          "image": [
+            "85",
+            0
+          ]
+        },
+        "class_type": "TTP_Tile_image_size",
+        "_meta": {
+          "title": "TTP_Tile_image_size"
+        }
+      },
+      "83": {
+        "inputs": {
+          "model_name": "4x-UltraSharp"
+        },
+        "class_type": "UpscaleModelLoader",
+        "_meta": {
+          "title": "UpscaleModelLoader"
+        }
+      },
+      "84": {
+        "inputs": {
+          "upscale_model": [
+            "83",
+            0
+          ],
+          "image": [
+            "113",
+            0
+          ]
+        },
+        "class_type": "ImageUpscaleWithModel",
+        "_meta": {
+          "title": "ImageUpscaleWithModel"
+        }
+      },
+      "85": {
+        "inputs": {
+          "text": "lanczos",
+          "image": [
+            "84",
+            0
+          ]
+        },
+        "class_type": "ImageScaleToTotalPixels",
+        "_meta": {
+          "title": "ImageScaleToTotalPixels"
+        }
+      },
+      "86": {
+        "inputs": {
+          "text": "",
+          "clip": [
+            "13",
+            0
+          ]
+        },
+        "class_type": "CLIPTextEncode",
+        "_meta": {
+          "title": "CLIPTextEncode"
+        }
+      },
+      "87": {
+        "inputs": {
+          "text": "dpmpp_2m"
+        },
+        "class_type": "KSamplerSelect",
+        "_meta": {
+          "title": "KSamplerSelect"
+        }
+      },
+      "88": {
+        "inputs": {
+          "value": 3.5,
+          "conditioning": [
+            "86",
+            0
+          ]
+        },
+        "class_type": "FluxGuidance",
+        "_meta": {
+          "title": "FluxGuidance"
+        }
+      },
+      "89": {
+        "inputs": {
+          "value": 591686027134332
+        },
+        "class_type": "RandomNoise",
+        "_meta": {
+          "title": "RandomNoise"
+        }
+      },
+      "90": {
+        "inputs": {
+          "text": "sgm_uniform",
+          "model": [
+            "96",
+            0
+          ]
+        },
+        "class_type": "BasicScheduler",
+        "_meta": {
+          "title": "BasicScheduler"
+        }
+      },
+      "91": {
+        "inputs": {
+          "pixels": [
+            "95",
+            0
+          ],
+          "vae": [
+            "14",
+            0
+          ]
+        },
+        "class_type": "VAEEncode",
+        "_meta": {
+          "title": "VAEEncode"
+        }
+      },
+      "92": {
+        "inputs": {
+          "noise": [
+            "89",
+            0
+          ],
+          "guider": [
+            "93",
+            0
+          ],
+          "sampler": [
+            "87",
+            0
+          ],
+          "sigmas": [
+            "90",
+            0
+          ],
+          "latent_image": [
+            "91",
+            0
+          ]
+        },
+        "class_type": "SamplerCustomAdvanced",
+        "_meta": {
+          "title": "SamplerCustomAdvanced"
+        }
+      },
+      "93": {
+        "inputs": {
+          "model": [
+            "96",
+            0
+          ],
+          "conditioning": [
+            "88",
+            0
+          ]
+        },
+        "class_type": "BasicGuider",
+        "_meta": {
+          "title": "BasicGuider"
+        }
+      },
+      "94": {
+        "inputs": {
+          "images": [
+            "106",
+            0
+          ]
+        },
+        "class_type": "ImageListToImageBatch",
+        "_meta": {
+          "title": "ImageListToImageBatch"
+        }
+      },
+      "95": {
+        "inputs": {
+          "image": [
+            "52",
+            0
+          ]
+        },
+        "class_type": "easy imageBatchToImageList",
+        "_meta": {
+          "title": "easy imageBatchToImageList"
+        }
+      },
+      "96": {
+        "inputs": {
+          "filename": "Flux.1 Model Family_Black Forest Labs_FLUX.1-dev-fp8"
+        },
+        "class_type": "UNETLoader",
+        "_meta": {
+          "title": "UNETLoader"
+        }
+      },
+      "97": {
+        "inputs": {
+          "image": "output (3).png"
+        },
+        "class_type": "LoadImage",
+        "_meta": {
+          "title": "LoadImage"
+        }
+      },
+      "98": {
+        "inputs": {
+          "value": [
+            {
+              "name": "A",
+              "selected": true,
+              "url": "https://models-online-tmp.shakker.cloud/sd-images/08351a7e645c7d5fa380a52064adc7080e36ff67ba0bd37f7854d69288a4110b.png?Token=529d6629cca84bcf9268fb12f6415636&filename=sd-images/08351a7e645c7d5fa380a52064adc7080e36ff67ba0bd37f7854d69288a4110b.png&type=output&rand=0.8838324065732197"
+            },
+            {
+              "name": "B",
+              "selected": true,
+              "url": "https://models-online-tmp.shakker.cloud/sd-images/f299018ba74c97dbd28af8c421181d690fe69c73b91f4f6185f8485d49dadbef.png?Token=529d6629cca84bcf9268fb12f6415636&filename=sd-images/f299018ba74c97dbd28af8c421181d690fe69c73b91f4f6185f8485d49dadbef.png&type=output&rand=0.15931442939217644"
+            }
+          ],
+          "image_a": [
+            "19",
+            0
+          ],
+          "image_b": [
+            "113",
+            0
+          ]
+        },
+        "class_type": "Image Comparer (rgthree)",
+        "_meta": {
+          "title": "Image Comparer (rgthree)"
+        }
+      },
+      "102": {
+        "inputs": {
+          "text": "1536",
+          "image": [
+            "113",
+            0
+          ]
+        },
+        "class_type": "easy imageSizeByLongerSide",
+        "_meta": {
+          "title": "easy imageSizeByLongerSide"
+        }
+      },
+      "106": {
+        "inputs": {
+          "value": 512,
+          "samples": [
+            "92",
+            0
+          ],
+          "vae": [
+            "14",
+            0
+          ],
+          "tile_size": [
+            "102",
+            0
+          ]
+        },
+        "class_type": "VAEDecodeTiled",
+        "_meta": {
+          "title": "VAEDecodeTiled"
+        }
+      },
+      "113": {
+        "inputs": {},
+        "class_type": "Reroute",
+        "_meta": {
+          "title": "Reroute"
+        }
+      }
+    }
+  }
+}
